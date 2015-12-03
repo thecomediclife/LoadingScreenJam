@@ -45,8 +45,21 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\CharController.cs" />
-     <Compile Include="Assets\DialogueTrigger.cs" />
+     <Compile Include="Assets\BushParentScript.cs" />
+     <Compile Include="Assets\BushScript.cs" />
+     <Compile Include="Assets\HouScript.cs" />
+     <Compile Include="Assets\MayScript.cs" />
+     <Compile Include="Assets\RupeeScript.cs" />
+     <Compile Include="Assets\Scripts\CharController.cs" />
+     <Compile Include="Assets\Scripts\DialogueManagerScript.cs" />
+     <Compile Include="Assets\Scripts\DialogueTrigger.cs" />
+     <Compile Include="Assets\Scripts\DialogueTrigger2.cs" />
+     <Compile Include="Assets\Scripts\DialogueTrigger3.cs" />
+     <Compile Include="Assets\Scripts\DoorScript.cs" />
+     <Compile Include="Assets\Scripts\GrassScript.cs" />
+     <Compile Include="Assets\Scripts\QuestionTrigger.cs" />
+     <Compile Include="Assets\Scripts\Swordscript.cs" />
+     <Compile Include="Assets\SherScript.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
