@@ -45,10 +45,15 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\BusBoyDialogueTrigger.cs" />
      <Compile Include="Assets\BushParentScript.cs" />
      <Compile Include="Assets\BushScript.cs" />
+     <Compile Include="Assets\EndingInitatiorQuestionTrigger.cs" />
+     <Compile Include="Assets\FlashScript.cs" />
      <Compile Include="Assets\HouScript.cs" />
+     <Compile Include="Assets\IntroScript.cs" />
      <Compile Include="Assets\MayScript.cs" />
+     <Compile Include="Assets\PlayerAnimControllerScript.cs" />
      <Compile Include="Assets\RupeeScript.cs" />
      <Compile Include="Assets\Scripts\CharController.cs" />
      <Compile Include="Assets\Scripts\DialogueManagerScript.cs" />
@@ -58,6 +63,7 @@
      <Compile Include="Assets\Scripts\DoorScript.cs" />
      <Compile Include="Assets\Scripts\GrassScript.cs" />
      <Compile Include="Assets\Scripts\QuestionTrigger.cs" />
+     <Compile Include="Assets\Scripts\ShopQuestionTrigger.cs" />
      <Compile Include="Assets\Scripts\Swordscript.cs" />
      <Compile Include="Assets\SherScript.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />

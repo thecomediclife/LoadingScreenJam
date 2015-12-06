@@ -8,19 +8,24 @@ public class DialogueTrigger : MonoBehaviour {
 	public Transform player;
 
 	public bool autoPlayDialogue = false;
+	public bool textAutoPlay = false;
 	private CharController charContr;
-	private bool dialoguePlaying = false;
+	public bool dialoguePlaying = false;
 	public string colliderTag = "Player";
 
 	public float letterPauseDefault = 0.05f;
 	private float letterPause;
-	private bool dialogueComplete;
-	private int counter = 0;
+	public bool dialogueComplete;
+	public int counter = 0;
 	public string[] dialogueArray = new string[1];
 
 	private IEnumerator coroutine;
 	
 	public bool dialogueFinished;
+
+	private float autoPlayTimer;
+
+	public bool pause;
 
 	// Use this for initialization
 	void Start () {
@@ -34,11 +39,11 @@ public class DialogueTrigger : MonoBehaviour {
 
 		if (dialoguePlaying) {
 			
-			if (Input.GetButtonDown("Fire1") && dialogueComplete) {
+			if (Input.GetButtonDown("Fire1") && dialogueComplete && !textAutoPlay && !pause) {
 				PlayNextLine();
 			}
 			
-			if (Input.GetButtonDown("Fire2")) {
+			if (Input.GetButtonDown("Fire2") && !textAutoPlay && !pause) {
 				if (!dialogueComplete) {
 					StopCoroutine(coroutine);
 					textBox.text = dialogueArray[counter];
@@ -47,6 +52,10 @@ public class DialogueTrigger : MonoBehaviour {
 					PlayNextLine();
 				}
 				
+			}
+
+			if (textAutoPlay && dialogueComplete && Time.time > autoPlayTimer) {
+				PlayNextLine();
 			}
 		}
 	}
@@ -75,7 +84,7 @@ public class DialogueTrigger : MonoBehaviour {
 		letterPause = letterPauseDefault;
 	}
 
-	void PlayDialogue() {
+	public void PlayDialogue() {
 		counter = 0;
 		dialoguePlaying = true;
 		charContr.disableInput = true;
@@ -90,7 +99,7 @@ public class DialogueTrigger : MonoBehaviour {
 
 	}
 
-	void EndDialogue() {
+	public void EndDialogue() {
 		charContr.disableInput = false;
 		dialoguePlaying = false;
 		
@@ -116,8 +125,14 @@ public class DialogueTrigger : MonoBehaviour {
 		foreach (char letter in dialogue.ToCharArray()) {
 			textBox.text += letter;
 
-			yield return new WaitForSeconds(letterPause);
+			if (!textAutoPlay) {
+				yield return new WaitForSeconds(letterPause);
+			} else {
+				yield return new WaitForSeconds(letterPause * 3f);
+			}
 		}
 		dialogueComplete = true;
+
+		autoPlayTimer = Time.time + 1f;
 	}
 }

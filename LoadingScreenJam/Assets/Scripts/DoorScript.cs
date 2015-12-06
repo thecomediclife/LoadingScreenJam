@@ -21,6 +21,9 @@ public class DoorScript : MonoBehaviour {
 
 		if (Input.GetButtonDown ("Fire1") && playerEntered) {
 			player.position = exit.position;
+			player.GetComponent<Rigidbody2D>().velocity = Vector3.zero;
+			player.GetComponent<CharController>().disableInput = true;
+			StartCoroutine(Loading ());
 			teleported = true;
 		}
 	}
@@ -36,5 +39,10 @@ public class DoorScript : MonoBehaviour {
 			playerEntered = false;
 		}
 
+	}
+	
+	public IEnumerator Loading() {
+		yield return new WaitForSeconds (0.5f);
+		player.GetComponent<CharController> ().disableInput = false;
 	}
 }

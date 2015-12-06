@@ -7,6 +7,7 @@ public class BushParentScript : MonoBehaviour {
 	public SpriteRenderer crash;
 	public Transform dialogueBox, dialogueBox2, dialogueBox3;
 	public CharController charContr;
+	public Transform finalPos;
 
 	public BushScript[] bushes = new BushScript[4];
 
@@ -71,9 +72,9 @@ public class BushParentScript : MonoBehaviour {
 
 		if (moveCatSuccess) {
 			charContr.disableInput = true;
-			cat.transform.position = Vector3.MoveTowards(cat.transform.position, new Vector3(30f, 43.35f, 0f), 1f * Time.deltaTime);
+			cat.transform.position = Vector3.MoveTowards(cat.transform.position, finalPos.position, 1f * Time.deltaTime);
 
-			if (Vector3.Magnitude(cat.transform.position - new Vector3(30f, 43.35f, 0f)) < 0.01f) {
+			if (Vector3.Magnitude(cat.transform.position - finalPos.position) < 0.01f) {
 				moveCatSuccess = false;
 				dialogueBox.GetComponent<BoxCollider2D> ().enabled = true;
 				charContr.disableInput = false;
@@ -104,7 +105,7 @@ public class BushParentScript : MonoBehaviour {
 		dialogueBox3.GetComponent<BoxCollider2D>().enabled = false;
 
 		if (PlayerPrefs.GetString ("BusTicket") == "True") {
-			cat.transform.position = new Vector3(30f, 43.35f, 0f);
+			cat.transform.position = finalPos.position;
 			cat.enabled = true;
 
 			if (dialogueBox.gameObject.activeSelf == true)
@@ -129,6 +130,8 @@ public class BushParentScript : MonoBehaviour {
 			timer = Time.time + 1f;
 			spawnCat = true;
 			activated = true;
+
+			charContr.disableInput = true;
 		}
 	}
 }

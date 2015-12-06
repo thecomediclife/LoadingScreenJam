@@ -17,6 +17,7 @@ public class Swordscript : MonoBehaviour {
 	public Vector3 originPos;
 	public Quaternion originRot;
 
+
 	// Use this for initialization
 	void Start () {
 		player = GameObject.Find ("Player").transform;
@@ -26,15 +27,25 @@ public class Swordscript : MonoBehaviour {
 		originPos = this.transform.position;
 		originRot = this.transform.rotation;
 
-		if (attached) {
-			rendr.enabled = false;
-			collidr.enabled = false;
-			this.transform.parent = player;
-		}
+//		if (attached) {
+//			rendr.enabled = false;
+//			collidr.enabled = false;
+//			this.transform.parent = player;
+//		}
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		if (door.teleported) {
+			this.transform.parent = null;
+			transform.position = originPos;
+			transform.rotation = originRot;
+			rendr.enabled = true;
+			collidr.enabled = true;
+			swinging = false;
+			attached = false;
+		}
+
 		if (attached) {
 			if (Input.GetButtonDown("Fire1") && !swinging) {
 				swinging = true;
@@ -83,7 +94,7 @@ public class Swordscript : MonoBehaviour {
 			if (swinging) {
 				angle -= rotationRate;
 
-				this.transform.localPosition = new Vector3(Mathf.Cos (Mathf.Deg2Rad * angle), Mathf.Sin(Mathf.Deg2Rad * angle), 0f);
+				this.transform.localPosition = new Vector3(1.3f * Mathf.Cos (Mathf.Deg2Rad * angle), 1.3f * Mathf.Sin(Mathf.Deg2Rad * angle), 0f);
 				this.transform.right = Vector3.Normalize(transform.position - transform.parent.position);
 
 				if (angle < finalAngle) {
@@ -93,21 +104,15 @@ public class Swordscript : MonoBehaviour {
 				}
 			}
 
-			if (door.teleported) {
-				this.transform.parent = null;
-				transform.position = originPos;
-				transform.rotation = originRot;
-				rendr.enabled = true;
-				collidr.enabled = true;
-			}
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D other) {
 		if (other.transform == player && !attached) {
-
+			rendr.enabled = false;
+			collidr.enabled = false;
+			this.transform.parent = player.transform.GetChild(0);
+			attached = true;
 		}
-
-
 	}
 }

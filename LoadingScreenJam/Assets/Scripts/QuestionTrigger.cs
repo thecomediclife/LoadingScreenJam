@@ -3,8 +3,6 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class QuestionTrigger : MonoBehaviour {
-	//Play first dialogue array begun, next, figure out how to end with a question.
-
 
 	public Transform image, cursorImage;
 	public Text textBox, answerbox1, answerbox2, answerbox3, answerbox4;
@@ -215,9 +213,9 @@ public class QuestionTrigger : MonoBehaviour {
 
 	void AdjustCursor(int answerIndex) {
 		if (answerIndex == 0) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-172f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 49.5f);
 		} else if (answerIndex == 1) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(47f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 49.5f);
 		}
 	}
 
