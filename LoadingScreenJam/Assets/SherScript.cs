@@ -27,10 +27,15 @@ public class SherScript : MonoBehaviour {
 		}
 	}
 
-	public void Shrug(float LR) {
-		animtr.SetBool("Shrug", true);
+	public void Shrug(bool tf, float LR) {
+		animtr.SetBool("Shrug", tf);
 		SetLR (LR);
 		timer = Time.time + 0.25f;
+	}
+
+	public void Sad(bool tf, float LR) {
+		animtr.SetBool ("Sad", tf);
+		SetLR (LR);
 	}
 
 	public void SetLR(float LR) {

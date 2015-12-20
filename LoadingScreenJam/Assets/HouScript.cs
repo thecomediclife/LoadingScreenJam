@@ -22,19 +22,29 @@ public class HouScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (animtr.GetBool("Laugh") && Time.time > timer) {
-			animtr.SetBool("Laugh", false);
-		}
+//		if (animtr.GetBool("Laugh") && Time.time > timer) {
+//			animtr.SetBool("Laugh", false);
+//		}
 	}
 
-	public void Laugh(float LR) {
-		animtr.SetBool("Laugh", true);
+	public void Laugh(bool tf, float LR) {
+		animtr.SetBool("Laugh", tf);
 		SetLR (LR);
-		timer = Time.time + 0.5f;
+		//timer = Time.time + 0.5f;
 	}
 
 	public void Run(bool startRun, float LR) {
 		animtr.SetBool("Run", startRun);
+		SetLR (LR);
+	}
+
+	public void Pose(bool tf, float LR) {
+		animtr.SetBool ("Pose", tf);
+		SetLR (LR);
+	}
+
+	public void Dead(bool tf, float LR) {
+		animtr.SetBool ("Dead", tf);
 		SetLR (LR);
 	}
 

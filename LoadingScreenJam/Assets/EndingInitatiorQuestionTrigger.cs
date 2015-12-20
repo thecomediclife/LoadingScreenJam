@@ -6,6 +6,8 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 	
 	public Transform image, cursorImage;
 	public Text textBox, answerbox1, answerbox2, answerbox3, answerbox4;
+	public Image headIcon;
+	public Sprite icon;
 	public Transform player;
 	
 	public bool autoPlayDialogue = false;
@@ -83,7 +85,11 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 				}
 
 				if (counter < currentTextArray.Length && currentTextArray[counter] == "HA HA HA !!!") {
-					this.transform.parent.GetComponent<HouScript>().Laugh(this.transform.parent.GetComponent<Animator>().GetFloat("LR"));
+					this.transform.parent.GetComponent<HouScript>().Laugh(true, this.transform.parent.GetComponent<Animator>().GetFloat("LR"));
+				}
+				
+				if (counter < currentTextArray.Length && currentTextArray[counter - 1] == "HA HA HA !!!") {
+					this.transform.parent.GetComponent<HouScript>().Laugh(false, this.transform.parent.GetComponent<Animator>().GetFloat("LR"));
 				}
 			}
 			
@@ -102,7 +108,15 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 						PlayNextLine();
 					}
 				}
-				
+
+				if (counter < currentTextArray.Length && currentTextArray[counter] == "HA HA HA !!!") {
+					this.transform.parent.GetComponent<HouScript>().Laugh(true, this.transform.parent.GetComponent<Animator>().GetFloat("LR"));
+				}
+
+				if (counter < currentTextArray.Length && counter != 0 && currentTextArray[counter - 1] == "HA HA HA !!!") {
+					this.transform.parent.GetComponent<HouScript>().Laugh(false, this.transform.parent.GetComponent<Animator>().GetFloat("LR"));
+				}
+
 			}
 			
 			if (question && makeChoice) {
@@ -144,6 +158,8 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 		
 		textBox.gameObject.SetActive (true);
 		image.gameObject.SetActive (true);
+		headIcon.gameObject.SetActive (true);
+		headIcon.sprite = icon;
 
 		question = true;
 		currentTextArray = firstDialogueArray;
@@ -151,6 +167,8 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 		InitNewStringArray ();
 		
 		PlayNextLine ();
+
+		AdjustCursor (0);
 	}
 	
 	void InitNewStringArray() {
@@ -221,9 +239,9 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 	
 	void AdjustCursor(int answerIndex) {
 		if (answerIndex == 0) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 60f);
 		} else if (answerIndex == 1) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 60f);
 		}
 	}
 	
@@ -232,8 +250,11 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 		
 		textBox.gameObject.SetActive (false);
 		image.gameObject.SetActive (false);
+		headIcon.gameObject.SetActive (false);
 		
 		dialoguePlaying = false;
+
+		this.transform.parent.GetComponent<HouScript>().Laugh(false, this.transform.parent.GetComponent<Animator>().GetFloat("LR"));
 	}
 	
 	void InitVars() {
@@ -244,9 +265,11 @@ public class EndingInitatiorQuestionTrigger : MonoBehaviour {
 		answerbox2 = GameObject.Find ("Canvas").transform.GetChild (3).GetComponent<Text> ();
 		answerbox3 = GameObject.Find ("Canvas").transform.GetChild (4).GetComponent<Text> ();
 		answerbox4 = GameObject.Find ("Canvas").transform.GetChild (5).GetComponent<Text> ();
+		headIcon = GameObject.Find ("Canvas").transform.GetChild (7).GetComponent<Image> ();
 		player = GameObject.Find ("Player").transform;
 		charContr = player.GetComponent<CharController> ();
 		letterPause = letterPauseDefault;
+
 	}
 	
 	public IEnumerator TypeDialogue(string dialogue) {

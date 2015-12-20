@@ -168,6 +168,8 @@ public class BusBoyDialogueTrigger : MonoBehaviour {
 		InitNewStringArray ();
 		
 		PlayNextLine ();
+
+		AdjustCursor (0);
 	}
 	
 	void InitNewStringArray() {
@@ -238,9 +240,9 @@ public class BusBoyDialogueTrigger : MonoBehaviour {
 	
 	void AdjustCursor(int answerIndex) {
 		if (answerIndex == 0) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 60f);
 		} else if (answerIndex == 1) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 60f);
 		}
 	}
 	
@@ -268,6 +270,8 @@ public class BusBoyDialogueTrigger : MonoBehaviour {
 		player = GameObject.Find ("Player").transform;
 		charContr = player.GetComponent<CharController> ();
 		letterPause = letterPauseDefault;
+
+
 	}
 	
 	public IEnumerator TypeDialogue(string dialogue) {

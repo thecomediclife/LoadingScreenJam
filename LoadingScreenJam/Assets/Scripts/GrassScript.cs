@@ -7,11 +7,15 @@ public class GrassScript : MonoBehaviour {
 	public DoorScript door;
 	public Transform rupee;
 
-	public float spawnChance = 0.8f;
+	private float spawnChance = 0.3f;
 
 	// Use this for initialization
 	void Start () {
 		this.GetComponent<Animator> ().speed = 0f;
+
+		if (PlayerPrefs.GetInt ("Playthrough") > 0) {
+			spawnChance = 0.8f;
+		}
 	}
 	
 	// Update is called once per frame

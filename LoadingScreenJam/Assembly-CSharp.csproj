@@ -48,6 +48,7 @@
      <Compile Include="Assets\BusBoyDialogueTrigger.cs" />
      <Compile Include="Assets\BushParentScript.cs" />
      <Compile Include="Assets\BushScript.cs" />
+     <Compile Include="Assets\CamScript.cs" />
      <Compile Include="Assets\EndingInitatiorQuestionTrigger.cs" />
      <Compile Include="Assets\FlashScript.cs" />
      <Compile Include="Assets\HouScript.cs" />
@@ -66,15 +67,22 @@
      <Compile Include="Assets\Scripts\ShopQuestionTrigger.cs" />
      <Compile Include="Assets\Scripts\Swordscript.cs" />
      <Compile Include="Assets\SherScript.cs" />
+     <Compile Include="Assets\TitleScreenScript.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\ThirdPersonCharacter\ThirdPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\FirstPersonCharacter\FirstPersonCharacterGuidelines.txt" />
      <None Include="Assets\Standard Assets\Characters\RollerBall\RollerBallGuidelines.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>C:/Program Files/Unity51/Editor/Data/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity51/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
  <HintPath>C:/Program Files/Unity51/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine.Analytics">
+ <HintPath>C:/Program Files/Unity51/Editor/Data/UnityExtensions/Unity/UnityAnalytics/UnityEngine.Analytics.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
  <HintPath>C:/Program Files/Unity51/Editor/Data/Managed/Mono.Cecil.dll</HintPath>

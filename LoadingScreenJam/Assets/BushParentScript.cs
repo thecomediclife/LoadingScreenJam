@@ -21,6 +21,8 @@ public class BushParentScript : MonoBehaviour {
 
 	public bool completed;
 
+	public int counter;
+
 	// Use this for initialization
 	void Start () {
 		bushes[0] = transform.GetChild (0).GetComponent<BushScript> ();
@@ -67,6 +69,8 @@ public class BushParentScript : MonoBehaviour {
 
 				dialogueBox3.GetComponent<Collider2D>().enabled = true;
 				charContr.disableInput = false;
+
+				counter++;
 			}
 		}
 
@@ -122,9 +126,13 @@ public class BushParentScript : MonoBehaviour {
 			if (chosenBush == index) {
 				bushes [index].ShakeBush ();
 				success = true;
-			} else {
+			} else if (counter < 3 && PlayerPrefs.GetInt("Playthrough") == 0) {
 				bushes [chosenBush].ShakeBush ();
 				success = false;
+			} else {
+				bushes [index].ShakeBush();
+				cat.transform.position = bushes [index].transform.position;
+				success = true;
 			}
 
 			timer = Time.time + 1f;

@@ -38,6 +38,11 @@ public class MayScript : MonoBehaviour {
 		SetLR (LR);
 	}
 
+	public void Walk(bool startWalk, float LR) {
+		animtr.SetBool ("Walk", startWalk);
+		SetLR (LR);
+	}
+
 	public void SetLayer(int layer) {
 		this.GetComponent<SpriteRenderer> ().sortingOrder = layer;
 	}

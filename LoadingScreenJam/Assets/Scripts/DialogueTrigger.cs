@@ -5,6 +5,9 @@ using System.Collections;
 public class DialogueTrigger : MonoBehaviour {
 	public Transform image;
 	public Text textBox;
+	public Image headIcon;
+	public bool useHeadIcon;
+	public Sprite icon;
 	public Transform player;
 
 	public bool autoPlayDialogue = false;
@@ -79,6 +82,7 @@ public class DialogueTrigger : MonoBehaviour {
 	void InitVars() {
 		image = GameObject.Find ("Canvas").transform.GetChild (0);
 		textBox = GameObject.Find ("Canvas").transform.GetChild (1).GetComponent<Text> ();
+		headIcon = GameObject.Find ("Canvas").transform.GetChild (7).GetComponent<Image> ();
 		player = GameObject.Find ("Player").transform;
 		charContr = player.GetComponent<CharController> ();
 		letterPause = letterPauseDefault;
@@ -91,6 +95,11 @@ public class DialogueTrigger : MonoBehaviour {
 
 		textBox.gameObject.SetActive (true);
 		image.gameObject.SetActive (true);
+
+		if (useHeadIcon) {
+			headIcon.gameObject.SetActive(true);
+			headIcon.sprite = icon;
+		}
 
 		dialogueComplete = false;
 		textBox.GetComponent<Text>().text = "";
@@ -105,6 +114,10 @@ public class DialogueTrigger : MonoBehaviour {
 		
 		textBox.gameObject.SetActive (false);
 		image.gameObject.SetActive (false);
+
+		if (useHeadIcon) {
+			headIcon.gameObject.SetActive(false);
+		}
 
 		dialogueFinished = true;
 	}

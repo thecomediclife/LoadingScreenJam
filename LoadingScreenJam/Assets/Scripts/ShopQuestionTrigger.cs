@@ -41,6 +41,8 @@ public class ShopQuestionTrigger : MonoBehaviour {
 
 	private bool success;
 
+	public int value = 11;
+
 	// Use this for initialization
 	void Start () {
 		InitVars ();
@@ -105,7 +107,7 @@ public class ShopQuestionTrigger : MonoBehaviour {
 
 					if (chosenAnswer == 0) {
 
-						if (PlayerPrefs.GetInt("Rupee") >= 0) {
+						if (PlayerPrefs.GetInt("Rupee") >= value) {
 							currentTextArray = shopSuccessArray;
 							shield.GetComponent<SpriteRenderer>().enabled = false;
 							shroom.GetComponent<SpriteRenderer>().enabled = false;
@@ -170,7 +172,7 @@ public class ShopQuestionTrigger : MonoBehaviour {
 
 		if (success) {
 			Vector3 goal = new Vector3(32f,0f,0f);
-			shopkeeper.position = Vector3.MoveTowards(shopkeeper.position, goal, 1f * Time.deltaTime);
+			shopkeeper.position = Vector3.MoveTowards(shopkeeper.position, goal, 2f * Time.deltaTime);
 
 			if (Vector3.Magnitude(shopkeeper.position - goal) < 0.01f) {
 				shopkeeper.GetComponent<SpriteRenderer>().enabled = false;
@@ -203,6 +205,8 @@ public class ShopQuestionTrigger : MonoBehaviour {
 		InitNewStringArray ();
 		
 		PlayNextLine ();
+
+		AdjustCursor (0);
 	}
 	
 	void InitNewStringArray() {
@@ -301,9 +305,9 @@ public class ShopQuestionTrigger : MonoBehaviour {
 	
 	void AdjustCursor(int answerIndex) {
 		if (answerIndex == 0) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition =  new Vector2(-118f, 60f);
 		} else if (answerIndex == 1) {
-			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 49.5f);
+			cursorImage.GetComponent<RectTransform>().anchoredPosition = new Vector2(27f, 60f);
 		}
 	}
 	
@@ -337,6 +341,8 @@ public class ShopQuestionTrigger : MonoBehaviour {
 		shield = this.transform.parent.transform.GetChild (2);
 		shroom = this.transform.parent.transform.GetChild (3);
 		shopkeeper = this.transform.parent.transform.GetChild (0);
+
+
 	}
 	
 	public IEnumerator TypeDialogue(string dialogue) {

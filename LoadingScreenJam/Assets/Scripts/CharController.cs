@@ -41,5 +41,9 @@ public class CharController : MonoBehaviour {
 				}
 			}
 		}
+
+		if (Input.GetKeyDown (KeyCode.Escape)) {
+			Application.Quit();
+		}
 	}
 }
